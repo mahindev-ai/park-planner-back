@@ -165,4 +165,3 @@ cython_debug/
 # Deploy on Google Cloud Platform
 cloudbuild.yaml
 .dockerignore
-Dockerfile
