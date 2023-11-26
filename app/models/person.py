@@ -1,9 +1,8 @@
 from flask_restx import fields
 
 person_model = {
-    'id': fields.Integer(description='ID de la persona'),
     'name': fields.String(description='Nombre de la persona'),
-    'identity': fields.String(description='Identidad de la persona'),
+    'identity': fields.String(description='Numero de identificacion de la persona'),
     'number': fields.String(description='Número de la persona'),
     'mail': fields.String(description='Correo de la persona'),
     'address': fields.String(description='Dirección de la persona'),

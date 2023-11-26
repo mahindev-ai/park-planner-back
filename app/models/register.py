@@ -1,7 +1,7 @@
 from flask_restx import fields
 
 register_model = {
-    'id': fields.Integer(description='ID del registro'),
+    'id': fields.String(description='ID del registro'),
     'date': fields.String(description='Fecha del registro'),
     'time': fields.String(description='Hora del registro'),
     'iduser': fields.Integer(description='ID del usuario que registró'),
