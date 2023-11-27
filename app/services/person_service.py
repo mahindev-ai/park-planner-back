@@ -4,6 +4,7 @@ from app.extensions import db
 def get_all_persons():
     people = db.child("persons").get()
     if people.val():
+        print(list(people.val().values()))
         return list(people.val().values())
     else:
         return []

@@ -1,12 +1,14 @@
 from app.extensions import db
 
 def get_all_users():
-    # Ejemplo: Obtener todos los usuarios de la base de datos
     users = db.child("users").get()
-    if users.val():
-        return list(users.val().values())
+    if users and users.val():
+        filtered_users = [user for user in users.val() if user and user.get("id") is not None]
+        return filtered_users if filtered_users else []
     else:
         return []
+
+
 
 def get_user(user_id):
     # Ejemplo: Obtener un usuario de la base de datos
