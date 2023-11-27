@@ -3,7 +3,10 @@ from app.extensions import db
 
 def get_all_persons():
     people = db.child("persons").get()
-    return people.val()
+    if people.val():
+        return list(people.val().values())
+    else:
+        return []
 
 def get_person(person_id):
     person = db.child("persons").child(person_id).get()
@@ -16,10 +19,10 @@ def create_person(person_data):
         "number":person_data["number"],
         "mail":person_data["mail"],
         "address":person_data["address"],
-        "type":person_data.get("role","Residente"),
+        "type":person_data["type"],
         "name_type":person_data["name_type"]
     }
-    result = db.child("persons").child(new_person["identity"]).push(new_person)
+    result = db.child("persons").child(new_person["identity"]).set(new_person)
     return new_person
 
 def update_person(person_id, updated_data):

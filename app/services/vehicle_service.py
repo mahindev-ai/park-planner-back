@@ -3,7 +3,10 @@ from app.extensions import db
 
 def get_all_vehicles():
     vehicles = db.child("vehicles").get()
-    return vehicles.each()
+    if vehicles.val():
+        return list(vehicles.val().values())
+    else:
+        return []
 
 def get_vehicle(vehicle_plate):
     vehicle = db.child("vehicles").child(vehicle_plate).get()

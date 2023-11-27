@@ -3,7 +3,10 @@ from app.extensions import db
 
 def get_all_services():
     services = db.child("services").get()
-    return services.each()
+    if services.val():
+        return list(services.val().values())
+    else:
+        return []
 
 def get_register(register_id):
     register = db.child("registers").child(register_id).get()
@@ -17,7 +20,7 @@ def create_register(register_data):
         "idvehicle": register_data["idvehicle"],
         "Estado": register_data["Estado"]
     }
-    result = db.child("registers").push(new_register)
+    result = db.child("registers").set(new_register)
     new_register["id"] = result["name"]
     return new_register
 
