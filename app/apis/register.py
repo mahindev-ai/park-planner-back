@@ -1,6 +1,6 @@
 # app/apis/register_namespace.py
 from app.models import register_model
-from app.services.register_service import get_all_services, get_register, create_register, update_register, delete_register
+from app.services.register_service import get_all_registers, get_register, create_register, update_register, delete_register
 from flask_restx import Namespace, Resource
 
 api = Namespace('Registers', description='Registers related operations')
@@ -13,7 +13,7 @@ class RegisterList(Resource):
     @api.marshal_list_with(register)
     def get(self):
         '''List all registers'''
-        registers = get_all_services()
+        registers = get_all_registers()
         return registers
 
     @api.doc('create_register')
